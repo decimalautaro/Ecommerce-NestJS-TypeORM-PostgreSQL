@@ -9,29 +9,29 @@ import {
   Query,
 } from '@nestjs/common';
 
-@Controller('categories')
-export class CategoriesController {
+@Controller('orders')
+export class OrdersController {
   @Get('/')
   getAll(
     @Query('limit') limit = 100,
     @Query('offset') offset = 0,
-    @Query('category') category: string,
+    @Query('order') order: string,
   ) {
     return {
-      message: `limit => ${limit} and offset => ${offset} and category: ${category}`,
+      message: `limit => ${limit} and offset => ${offset} and order: ${order}`,
     };
   }
 
   @Get('/:id')
   getOne(@Param('id') id: number) {
     return {
-      message: `category id: ${id}`,
+      message: `order id: ${id}`,
     };
   }
   @Post('/')
   create(@Body() payload: any) {
     return {
-      message: 'creando category',
+      message: 'creando order',
       payload,
     };
   }

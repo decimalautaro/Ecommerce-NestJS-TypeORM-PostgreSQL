@@ -9,29 +9,29 @@ import {
   Query,
 } from '@nestjs/common';
 
-@Controller('categories')
-export class CategoriesController {
+@Controller('brands')
+export class BrandsController {
   @Get('/')
   getAll(
     @Query('limit') limit = 100,
     @Query('offset') offset = 0,
-    @Query('category') category: string,
+    @Query('brand') brand: string,
   ) {
     return {
-      message: `limit => ${limit} and offset => ${offset} and category: ${category}`,
+      message: `limit => ${limit} and offset => ${offset} and brand: ${brand}`,
     };
   }
 
   @Get('/:id')
   getOne(@Param('id') id: number) {
     return {
-      message: `category id: ${id}`,
+      message: `brand id: ${id}`,
     };
   }
   @Post('/')
   create(@Body() payload: any) {
     return {
-      message: 'creando category',
+      message: 'creando marca',
       payload,
     };
   }
