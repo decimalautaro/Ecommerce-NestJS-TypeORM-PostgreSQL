@@ -71,3 +71,30 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## CLI NEST:
+
+Generar un nuevo proyecto:
+
+```
+  nest generate  <name-proyect>
+
+```
+
+generar controlador:
+
+```
+  nest generate controller controllers/<name-controller>
+```
+
+otra forma:
+
+```
+nest g controller controllers/<name-controller>
+```
+
+para que no cree la carpeta del nombre del controler pordemos hacer
+
+```
+nest g controller controllers/<name-controller> --flat
+```
