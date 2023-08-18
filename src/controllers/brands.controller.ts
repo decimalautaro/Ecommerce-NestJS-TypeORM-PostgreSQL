@@ -12,7 +12,7 @@ import {
   Res,
 } from '@nestjs/common';
 
-import { Response, response } from 'express';
+import { Response } from 'express';
 
 @Controller('brands')
 export class BrandsController {
