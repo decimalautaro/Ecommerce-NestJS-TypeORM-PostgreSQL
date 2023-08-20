@@ -81,7 +81,7 @@ Generar un nuevo proyecto:
 
 ```
 
-generar controlador:
+Generar controlador:
 
 ```
   nest generate controller controllers/<name-controller>
@@ -97,4 +97,10 @@ para que no cree la carpeta del nombre del controler pordemos hacer
 
 ```
 nest g controller controllers/<name-controller> --flat
+```
+
+Generar servicios:
+
+```
+nest g s services/<name-service> --flat
 ```
