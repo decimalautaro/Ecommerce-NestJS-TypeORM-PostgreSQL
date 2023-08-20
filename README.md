@@ -103,6 +103,13 @@ Generar servicios:
 
 ```
 nest g s services/<name-service> --flat
+
+```
+
+Generar modulos:
+
+```
+nest g mo <nombre modulo>
 ```
 
 ## Documentacion de PIPES:
