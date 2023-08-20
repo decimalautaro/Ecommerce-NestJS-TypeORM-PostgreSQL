@@ -108,3 +108,9 @@ nest g s services/<name-service> --flat
 ## Documentacion de PIPES:
 
 https://docs.nestjs.com/pipes#built-in-pipes
+
+Crear un pipe personalizado:
+
+```
+nest g pipe common/<nombre del pipe>
+```
