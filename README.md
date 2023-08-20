@@ -104,3 +104,7 @@ Generar servicios:
 ```
 nest g s services/<name-service> --flat
 ```
+
+## Documentacion de PIPES:
+
+https://docs.nestjs.com/pipes#built-in-pipes
