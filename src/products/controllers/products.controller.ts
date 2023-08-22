@@ -6,26 +6,22 @@ import {
   Param,
   Post,
   Put,
-  Query,
   // ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
-import { ParseIntPipe } from '../common/parse-int/parse-int.pipe';
+import { ParseIntPipe } from '../../common/parse-int/parse-int.pipe';
 
 import { CreateProductDto, UpdateProductDto } from '../dtos/products.dtos';
 
 import { ProductsService } from '../services/products.service';
-
+@ApiTags('products')
 @Controller('products')
 export class ProductsController {
   constructor(private productService: ProductsService) {}
 
   @Get('/')
-  getAll(
-    @Query('limit') limit = 100,
-    @Query('offset') offset = 0,
-    @Query('product') product: string,
-  ) {
+  getAll() {
     return this.productService.findAll();
   }
 

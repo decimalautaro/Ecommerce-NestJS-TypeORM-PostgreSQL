@@ -103,6 +103,13 @@ Generar servicios:
 
 ```
 nest g s services/<name-service> --flat
+
+```
+
+Generar modulos:
+
+```
+nest g mo <nombre modulo>
 ```
 
 ## Documentacion de PIPES:
@@ -114,3 +121,24 @@ Crear un pipe personalizado:
 ```
 nest g pipe common/<nombre del pipe>
 ```
+
+### instalacion de paquete para modulo de configuracion:
+
+```
+npm i @nest/config
+```
+
+# Documentacion open api:
+
+https://docs.nestjs.com/openapi/introduction
+
+Tener en cuenta:
+La documentacion de swagger genera archivos estaticos entonces cada vez que se modifique la configuracion de swagger eliminar carpeta dist y volver a ejecutarlo.
+
+```
+rm -rf dist/
+```
+
+# Documentacion API Platzi Store:
+
+http://localhost:3000/docs/
