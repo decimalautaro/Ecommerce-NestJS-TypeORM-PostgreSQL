@@ -6,6 +6,7 @@ import { lastValueFrom } from 'rxjs';
 import { ConfigModule } from '@nestjs/config';
 
 import { enviroments } from './enviroments';
+import config from './config';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -22,6 +23,7 @@ import { DatabaseModule } from './database/database.module';
     DatabaseModule,
     ConfigModule.forRoot({
       envFilePath: enviroments[process.env.NODE_ENV] || '.env',
+      load: [config],
       isGlobal: true,
     }),
   ],
