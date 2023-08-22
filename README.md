@@ -121,3 +121,9 @@ Crear un pipe personalizado:
 ```
 nest g pipe common/<nombre del pipe>
 ```
+
+### instalacion de paquete para modulo de configuracion:
+
+```
+npm i @nest/config
+```
