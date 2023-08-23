@@ -5,8 +5,8 @@ import {
   IsNotEmpty,
   IsPositive,
 } from 'class-validator';
-
 import { PartialType } from '@nestjs/swagger';
+
 export class CreateProductDto {
   @IsString()
   @IsNotEmpty()

@@ -20,7 +20,7 @@ import { ProductsService } from '../services/products.service';
 export class ProductsController {
   constructor(private productService: ProductsService) {}
 
-  @Get('/')
+  @Get()
   getAll() {
     return this.productService.findAll();
   }
