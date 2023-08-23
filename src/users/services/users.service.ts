@@ -79,6 +79,7 @@ export class UsersService {
       products: this.productsService.findAll(),
     };
   }
+
   getTask() {
     return new Promise((resolve, reject) => {
       this.clientPg.query('SELECT * FROM tasks', (err, res) => {
