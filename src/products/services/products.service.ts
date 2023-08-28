@@ -16,7 +16,6 @@ export class ProductsService {
 
   async findOne(id: number) {
     const product = await this.productRepository.findOneBy({ id });
-    console.log('----->', product);
     if (!product) {
       throw new NotFoundException(`Product #${id} not found`);
     }
