@@ -139,29 +139,31 @@ La documentacion de swagger genera archivos estaticos entonces cada vez que se m
 rm -rf dist/
 ```
 
-# Documentacion API Platzi Store:
+# Documentacion API Platzi Store (SWAGGER):
 
 http://localhost:3000/docs/
 
-# TYPEORM Generar migracion:
+#
+
+### TYPEORM Generar migracion:
 
 ```
 npm run migrations:generate -n <nombre migracion>
 ```
 
-# Correr migracion:
+### Correr migracion:
 
 ```
 npm run migrations:run
 ```
 
-# Ver migracion que se han corrido en el momento:
+### Ver migracion que se han corrido en el momento:
 
 ```
 npm run migrations:show
 ```
 
-# Eliminar todas las tablas:
+### Eliminar todas las tablas:
 
 ```
 npm run migration:drop
