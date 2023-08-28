@@ -25,16 +25,11 @@ export class ProductsController {
     return this.productService.findAll();
   }
 
-  @Get('/filter')
-  getFilter() {
-    return `yo soy un filter`;
-  }
-
   @Get(':id')
   getOne(@Param('id', ParseIntPipe) id: number) {
     return this.productService.findOne(id);
   }
-  @Post('/')
+  @Post()
   create(@Body() payload: CreateProductDto) {
     return this.productService.create(payload);
   }
