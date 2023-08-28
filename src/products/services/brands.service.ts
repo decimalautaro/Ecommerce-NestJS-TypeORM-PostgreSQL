@@ -31,6 +31,9 @@ export class BrandsService {
 
   async update(id: number, data: UpdateBrandDto) {
     const brand = await this.brandRepository.findOneBy({ id });
+    if (!brand) {
+      throw new NotFoundException(`Brand #${id} not found`);
+    }
     this.brandRepository.merge(brand, data);
     return this.brandRepository.save(brand);
   }

@@ -31,6 +31,9 @@ export class CategoriesService {
 
   async update(id: number, data: UpdateCategoryDto) {
     const category = await this.categoryRepository.findOneBy({ id });
+    if (!category) {
+      throw new NotFoundException(`Category #${id} not found`);
+    }
     this.categoryRepository.merge(category, data);
     return this.categoryRepository.save(category);
   }

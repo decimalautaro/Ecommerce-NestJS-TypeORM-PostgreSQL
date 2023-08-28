@@ -38,6 +38,9 @@ export class ProductsService {
 
   async update(id: number, data: UpdateProductDto) {
     const product = await this.productRepository.findOneBy({ id });
+    if (!product) {
+      throw new NotFoundException(`Product #${id} not found`);
+    }
     this.productRepository.merge(product, data);
     return this.productRepository.save(product);
   }
