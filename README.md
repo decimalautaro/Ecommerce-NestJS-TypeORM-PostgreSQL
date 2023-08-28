@@ -148,3 +148,23 @@ http://localhost:3000/docs/
 ```
 npm run migrations:generate -- <nombre migracion>
 ```
+
+# Correr migracion:
+
+```
+npm run migration:run
+```
+
+# Ver migracion que se han corrido en el momento:
+
+```
+npm run migration:show
+```
+
+# Eliminar todas las tablas:
+
+```
+npm run migration:drop
+```
+
+
