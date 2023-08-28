@@ -41,3 +41,4 @@ lerna-debug.log*
 
 #Docker
 /postgres_data
+/mysql_data
