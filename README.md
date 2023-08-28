@@ -142,3 +142,9 @@ rm -rf dist/
 # Documentacion API Platzi Store:
 
 http://localhost:3000/docs/
+
+# TYPEORM Generar migracion:
+
+```
+npm run migrations:generate -- <nombre migracion>
+```
