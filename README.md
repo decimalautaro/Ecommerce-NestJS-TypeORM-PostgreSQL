@@ -146,19 +146,19 @@ http://localhost:3000/docs/
 # TYPEORM Generar migracion:
 
 ```
-npm run migrations:generate -- <nombre migracion>
+npm run migrations:generate -n <nombre migracion>
 ```
 
 # Correr migracion:
 
 ```
-npm run migration:run
+npm run migrations:run
 ```
 
 # Ver migracion que se han corrido en el momento:
 
 ```
-npm run migration:show
+npm run migrations:show
 ```
 
 # Eliminar todas las tablas:
@@ -166,5 +166,3 @@ npm run migration:show
 ```
 npm run migration:drop
 ```
-
-
