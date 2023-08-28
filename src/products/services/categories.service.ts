@@ -16,7 +16,7 @@ export class CategoriesService {
   }
 
   async findOne(id: number) {
-    const category = await this.categoryRepository.findOneBy({ id });
+    const category = await this.categoryRepository.findOne({ id });
     if (!category) {
       throw new NotFoundException(`Category #${id} not found`);
     }
@@ -30,7 +30,7 @@ export class CategoriesService {
   }
 
   async update(id: number, data: UpdateCategoryDto) {
-    const category = await this.categoryRepository.findOneBy({ id });
+    const category = await this.categoryRepository.findOne({ id });
     if (!category) {
       throw new NotFoundException(`Category #${id} not found`);
     }
@@ -39,7 +39,7 @@ export class CategoriesService {
   }
 
   async remove(id: number) {
-    const category = await this.categoryRepository.findOneBy({ id });
+    const category = await this.categoryRepository.findOne({ id });
     if (!category) {
       throw new NotFoundException(`Category #${id} not exist`);
     }

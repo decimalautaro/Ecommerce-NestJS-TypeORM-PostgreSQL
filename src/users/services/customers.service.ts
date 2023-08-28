@@ -17,7 +17,7 @@ export class CustomersService {
   }
 
   async findOne(id: number) {
-    const customer = await this.customerRepository.findOneBy({ id });
+    const customer = await this.customerRepository.findOne({ id });
     if (!customer) {
       throw new NotFoundException(`Customer #${id} not found`);
     }
@@ -31,7 +31,7 @@ export class CustomersService {
   }
 
   async update(id: number, data: UpdateCustomerDto) {
-    const customer = await this.customerRepository.findOneBy({ id });
+    const customer = await this.customerRepository.findOne({ id });
     if (!customer) {
       throw new NotFoundException(`Customer #${id} not found`);
     }
@@ -40,7 +40,7 @@ export class CustomersService {
   }
 
   async remove(id: number) {
-    const customer = await this.customerRepository.findOneBy({ id });
+    const customer = await this.customerRepository.findOne({ id });
     if (!customer) {
       throw new NotFoundException(`Customer #${id} not found`);
     }

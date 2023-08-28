@@ -22,7 +22,7 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    const user = await this.userRepository.findOneBy({ id });
+    const user = await this.userRepository.findOne({ id });
     if (!user) {
       throw new NotFoundException(`User #${id} not found`);
     }
@@ -36,7 +36,7 @@ export class UsersService {
   }
 
   async update(id: number, data: UpdateUserDto) {
-    const user = await this.userRepository.findOneBy({ id });
+    const user = await this.userRepository.findOne({ id });
     if (!user) {
       throw new NotFoundException(`User #${id} not found`);
     }
@@ -46,7 +46,7 @@ export class UsersService {
   }
 
   async remove(id: number) {
-    const user = await this.userRepository.findOneBy({ id });
+    const user = await this.userRepository.findOne({ id });
     if (!user) {
       throw new NotFoundException(`User #${id} not found`);
     }
@@ -54,7 +54,7 @@ export class UsersService {
   }
 
   async getOrderByUser(id: number) {
-    const user = await this.userRepository.findOneBy({ id });
+    const user = await this.userRepository.findOne({ id });
     return {
       date: new Date(),
       user,
