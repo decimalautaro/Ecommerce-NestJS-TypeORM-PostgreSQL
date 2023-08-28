@@ -1,5 +1,4 @@
 import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
-
 @Entity()
 export class Customer {
   @PrimaryGeneratedColumn()
@@ -11,6 +10,6 @@ export class Customer {
   @Column({ type: 'varchar' })
   lastName: string;
 
-  @Column({ type: 'int', unique: true })
+  @Column({ type: 'varchar', unique: true })
   phone: string;
 }
