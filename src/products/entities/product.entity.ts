@@ -6,11 +6,13 @@ import {
   UpdateDateColumn,
   ManyToOne,
   ManyToMany,
+  Index,
 } from 'typeorm';
 
 import { Category } from './category.entity';
 import { Brand } from './brand.entity';
 
+@Index(['price', 'stock'])
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
