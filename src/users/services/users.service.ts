@@ -69,13 +69,4 @@ export class UsersService {
     }
     return this.userRepository.delete(id);
   }
-
-  async getOrderByUser(id: number) {
-    const user = await this.userRepository.findOne({ id });
-    return {
-      date: new Date(),
-      user,
-      products: await this.productsService.findAll(),
-    };
-  }
 }
