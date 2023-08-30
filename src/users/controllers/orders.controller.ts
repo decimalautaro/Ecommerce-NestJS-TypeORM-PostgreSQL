@@ -8,10 +8,11 @@ import {
   Param,
   Body,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
 import { OrdersService } from '../services/orders.service';
 import { CreateOrderDto, UpdateOrderDto } from '../dtos/order.dto';
-
+@ApiTags('orders')
 @Controller('orders')
 export class OrdersController {
   constructor(private orderService: OrdersService) {}

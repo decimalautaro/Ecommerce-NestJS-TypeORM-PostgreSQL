@@ -15,7 +15,9 @@ export class OrdersService {
   ) {}
 
   async findAll() {
-    return this.orderRepository.find();
+    return this.orderRepository.find({
+      relations: ['items', 'items.product'],
+    });
   }
 
   async findOne(id: number) {
@@ -40,7 +42,7 @@ export class OrdersService {
   }
 
   async update(id: number, data: UpdateOrderDto) {
-    const order = await this.orderRepository.findOne(id);
+    const order = await this.findOne(id);
     if (data.customerId) {
       const customer = await this.customerRepository.findOne(data.customerId);
       order.customer = customer;
