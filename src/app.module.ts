@@ -13,6 +13,7 @@ import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auht/services/auth/auth.service';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { AuthModule } from './auth/auth.module';
       },
       inject: [HttpService],
     },
+    AuthService,
   ],
 })
 export class AppModule {}
