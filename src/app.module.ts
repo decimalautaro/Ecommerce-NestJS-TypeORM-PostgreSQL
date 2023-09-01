@@ -12,6 +12,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,10 +25,11 @@ import { DatabaseModule } from './database/database.module';
       load: [config],
       isGlobal: true,
       validationSchema: Joi.object({
-        API_KEY: Joi.number().required(),
+        API_KEY: Joi.string().required(),
         DATABASE_PORT: Joi.number().required(),
       }),
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
