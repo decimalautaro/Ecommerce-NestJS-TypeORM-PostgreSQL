@@ -13,7 +13,6 @@ import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './auth/auth.module';
-import { AuthService } from './auth/services/auth.service';
 
 @Module({
   imports: [
