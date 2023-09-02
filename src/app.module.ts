@@ -27,6 +27,7 @@ import { AuthService } from './auth/services/auth.service';
       isGlobal: true,
       validationSchema: Joi.object({
         API_KEY: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
         DATABASE_PORT: Joi.number().required(),
       }),
     }),
@@ -44,7 +45,6 @@ import { AuthService } from './auth/services/auth.service';
       },
       inject: [HttpService],
     },
-    AuthService,
   ],
 })
 export class AppModule {}
