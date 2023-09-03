@@ -19,7 +19,6 @@ export class ProfileController {
   @Get('my-orders')
   getOrders(@Req() req: Request) {
     const user = req.user as PayloadToken;
-    console.log(user.sub);
     return this.orderService.ordersByCustomer(user.sub);
   }
 }
