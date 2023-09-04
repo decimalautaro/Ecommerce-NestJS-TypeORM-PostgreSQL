@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { HttpModule, HttpService } from '@nestjs/axios';
-import { lastValueFrom } from 'rxjs';
+import { HttpModule } from '@nestjs/axios';
 import * as Joi from 'joi';
 
 import { enviroments } from './enviroments';
@@ -33,17 +32,6 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: 'TASKS',
-      useFactory: async (http: HttpService) => {
-        const request = http.get('https://jsonplaceholder.typicode.com/todos');
-        const tasks = await lastValueFrom(request);
-        return tasks.data;
-      },
-      inject: [HttpService],
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule {}
