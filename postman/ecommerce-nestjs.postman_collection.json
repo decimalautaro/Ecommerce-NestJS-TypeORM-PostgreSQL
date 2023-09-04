@@ -7,16 +7,34 @@
 	},
 	"item": [
 		{
-			"name": "users",
+			"name": "auth",
 			"item": [
 				{
-					"name": "create user",
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"token\",data.acces_token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "auth",
+								"value": "abc123",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"asd@asd.com\",\n    \"password\": \"123456\",\n    \"role\": \"customer\",\n    \"customerId\": 1\n}",
+							"raw": "{\n    \"email\": \"prueba1@gmail.com\",\n    \"password\": \"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,12 +42,119 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/auth/login",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "auth",
+										"value": "abc123",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"prueba@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "320"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"140-jYdMr1UdLl4K0qx3BlED4SouC9Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Sep 2023 01:49:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"acces_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY3VzdG9tZXIiLCJzdWIiOjExLCJpYXQiOjE2OTM3OTIxOTIsImV4cCI6MTY5MzgyMDk5Mn0.a9BocYToHKEIYfBlrnicpskrW84IOVk6kNa0qZHOcOk\",\n    \"user\": {\n        \"id\": 11,\n        \"email\": \"prueba@gmail.com\",\n        \"role\": \"customer\",\n        \"createAt\": \"2023-09-03T07:16:06.316Z\",\n        \"updateAt\": \"2023-09-03T07:20:34.575Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"prueba@gmail.com\",\n    \"password\": \"123456\",\n    \"role\": \"admin\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
 							"path": [
 								"users"
 							]
@@ -103,15 +228,30 @@
 				{
 					"name": "getAll users",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -176,15 +316,29 @@
 				{
 					"name": "getById user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "auth",
+								"value": "abc123",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/users/5",
-							"protocol": "http",
+							"raw": "{{url}}/users/5",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users",
 								"5"
@@ -251,11 +405,21 @@
 				{
 					"name": "update user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"customerId\":2\n\n}",
+							"raw": "{\n    \"password\":\"123456\",\n    \"role\": \"customer\"\n\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -263,12 +427,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/1",
-							"protocol": "http",
+							"raw": "{{url}}/users/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users",
 								"1"
@@ -344,15 +506,23 @@
 				{
 					"name": "delete user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/users/1",
-							"protocol": "http",
+							"raw": "{{url}}/users/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users",
 								"1"
@@ -424,11 +594,21 @@
 				{
 					"name": "create product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"pantalon\",\n    \"price\": 3500,\n    \"stock\": 100,\n    \"image\": \"https://adidas.com\",\n    \"description\":\"adidas remera\",\n    \"brandId\": 2,\n    \"categoriesIds\": [1,2]\n}",
+							"raw": "{\n    \"name\": \"campera\",\n    \"price\": 8600,\n    \"stock\": 50,\n    \"image\": \"https://adidas.com\",\n    \"description\":\"adidas campera\",\n    \"brandId\": 2,\n    \"categoriesIds\": [1,2]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -436,12 +616,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/products/",
-							"protocol": "http",
+							"raw": "{{url}}/products/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"products",
 								""
@@ -520,12 +698,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/products/",
-							"protocol": "http",
+							"raw": "{{url}}/products/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"products",
 								""
@@ -639,15 +815,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/products/8",
-							"protocol": "http",
+							"raw": "{{url}}/products/5",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"products",
-								"8"
+								"5"
 							]
 						}
 					},
@@ -711,6 +885,16 @@
 				{
 					"name": "update product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -723,12 +907,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/products/8",
-							"protocol": "http",
+							"raw": "{{url}}/products/8",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"products",
 								"8"
@@ -804,6 +986,16 @@
 				{
 					"name": "add category to product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -816,12 +1008,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/products/8/category/",
-							"protocol": "http",
+							"raw": "{{url}}/products/8/category/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"products",
 								"8",
@@ -901,15 +1091,23 @@
 				{
 					"name": "delete product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/products/1",
-							"protocol": "http",
+							"raw": "{{url}}/products/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"products",
 								"1"
@@ -976,15 +1174,23 @@
 				{
 					"name": "delete category by product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/products/8/category/1",
-							"protocol": "http",
+							"raw": "{{url}}/products/8/category/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"products",
 								"8",
@@ -1060,6 +1266,16 @@
 				{
 					"name": "create customer",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -1072,12 +1288,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/customers",
-							"protocol": "http",
+							"raw": "{{url}}/customers",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"customers"
 							]
@@ -1151,15 +1365,23 @@
 				{
 					"name": "getAll customers",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/customers?customer=asd",
-							"protocol": "http",
+							"raw": "{{url}}/customers?customer=asd",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"customers"
 							],
@@ -1236,15 +1458,23 @@
 				{
 					"name": "getById customer",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/customers/5",
-							"protocol": "http",
+							"raw": "{{url}}/customers/5",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"customers",
 								"5"
@@ -1311,6 +1541,16 @@
 				{
 					"name": "update customer",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -1323,12 +1563,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/customers/5",
-							"protocol": "http",
+							"raw": "{{url}}/customers/5",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"customers",
 								"5"
@@ -1404,15 +1642,23 @@
 				{
 					"name": "delete customer",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/customers/6",
-							"protocol": "http",
+							"raw": "{{url}}/customers/6",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"customers",
 								"6"
@@ -1484,6 +1730,16 @@
 				{
 					"name": "create category",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -1496,12 +1752,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/categories/",
-							"protocol": "http",
+							"raw": "{{url}}/categories/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categories",
 								""
@@ -1580,12 +1834,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/categories",
-							"protocol": "http",
+							"raw": "{{url}}/categories",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categories"
 							],
@@ -1677,12 +1929,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/categories/1",
-							"protocol": "http",
+							"raw": "{{url}}/categories/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categories",
 								"1"
@@ -1749,6 +1999,16 @@
 				{
 					"name": "update category",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -1761,12 +2021,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/categories/1",
-							"protocol": "http",
+							"raw": "{{url}}/categories/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categories",
 								"1"
@@ -1842,15 +2100,23 @@
 				{
 					"name": "delete category",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/categories/1",
-							"protocol": "http",
+							"raw": "{{url}}/categories/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categories",
 								"1"
@@ -1922,6 +2188,16 @@
 				{
 					"name": "create brand",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -1934,12 +2210,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/brands/",
-							"protocol": "http",
+							"raw": "{{url}}/brands/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"brands",
 								""
@@ -2018,12 +2292,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/brands/",
-							"protocol": "http",
+							"raw": "{{url}}/brands/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"brands",
 								""
@@ -2093,12 +2365,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/brands/2",
-							"protocol": "http",
+							"raw": "{{url}}/brands/2",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"brands",
 								"2"
@@ -2165,6 +2435,16 @@
 				{
 					"name": "update brand",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -2177,12 +2457,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/brands/2",
-							"protocol": "http",
+							"raw": "{{url}}/brands/2",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"brands",
 								"2"
@@ -2258,15 +2536,23 @@
 				{
 					"name": "delete brand",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/brands/3",
-							"protocol": "http",
+							"raw": "{{url}}/brands/3",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"brands",
 								"3"
@@ -2333,11 +2619,21 @@
 			]
 		},
 		{
-			"name": "Orders",
+			"name": "orders",
 			"item": [
 				{
 					"name": "create order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -2350,12 +2646,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/orders",
-							"protocol": "http",
+							"raw": "{{url}}/orders",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"orders"
 							]
@@ -2429,15 +2723,23 @@
 				{
 					"name": "getAll orders",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/orders",
-							"protocol": "http",
+							"raw": "{{url}}/orders",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"orders"
 							]
@@ -2502,15 +2804,23 @@
 				{
 					"name": "getById order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/orders/1",
-							"protocol": "http",
+							"raw": "{{url}}/orders/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"orders",
 								"1"
@@ -2577,6 +2887,16 @@
 				{
 					"name": "update order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -2589,12 +2909,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/orders/3",
-							"protocol": "http",
+							"raw": "{{url}}/orders/3",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"orders",
 								"3"
@@ -2670,15 +2988,23 @@
 				{
 					"name": "delete order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/orders/",
-							"protocol": "http",
+							"raw": "{{url}}/orders/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"orders",
 								""
@@ -2745,11 +3071,54 @@
 			]
 		},
 		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "getByCustomer order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/profile/my-orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile",
+								"my-orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Item",
 			"item": [
 				{
 					"name": "create item",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -2762,12 +3131,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/order-item",
-							"protocol": "http",
+							"raw": "{{url}}/order-item",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"order-item"
 							]
@@ -2841,15 +3208,23 @@
 				{
 					"name": "getAll item",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/order-item",
-							"protocol": "http",
+							"raw": "{{url}}/order-item",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"order-item"
 							]
@@ -2914,15 +3289,23 @@
 				{
 					"name": "getById item",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/order-item/",
-							"protocol": "http",
+							"raw": "{{url}}/order-item/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"order-item",
 								""
@@ -2989,6 +3372,16 @@
 				{
 					"name": "update item",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -3001,12 +3394,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/order-item/",
-							"protocol": "http",
+							"raw": "{{url}}/order-item/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"order-item",
 								""
@@ -3082,15 +3473,23 @@
 				{
 					"name": "delete item",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/order-item/5",
-							"protocol": "http",
+							"raw": "{{url}}/order-item/5",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"order-item",
 								"5"
