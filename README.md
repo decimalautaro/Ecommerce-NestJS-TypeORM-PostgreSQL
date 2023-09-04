@@ -145,6 +145,10 @@ La documentacion de swagger genera archivos estaticos entonces cada vez que se m
 rm -rf dist/
 ```
 
+# Documentacion POSTMAN:
+
+https://documenter.getpostman.com/view/19270942/2s9Y5eMJmm
+
 # Documentacion API Platzi Store (SWAGGER):
 
 http://localhost:3000/docs/
