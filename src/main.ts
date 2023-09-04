@@ -22,7 +22,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('API')
-    .setDescription('Platzi Store')
+    .setDescription('Ecommerce NestJs - Typeorm')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
