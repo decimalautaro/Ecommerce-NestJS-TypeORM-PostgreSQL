@@ -8,7 +8,7 @@ import {
   CreateProductDto,
   UpdateProductDto,
   FilterProductDto,
-} from '../dtos/products.dtos';
+} from '../dtos/products.dto';
 import { Category } from '../entities/category.entity';
 import { Brand } from '../entities/brand.entity';
 @Injectable()

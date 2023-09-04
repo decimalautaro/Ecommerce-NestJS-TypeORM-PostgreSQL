@@ -16,7 +16,7 @@ import {
   CreateProductDto,
   FilterProductDto,
   UpdateProductDto,
-} from '../dtos/products.dtos';
+} from '../dtos/products.dto';
 import { ProductsService } from '../services/products.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
