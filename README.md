@@ -112,6 +112,12 @@ Generar modulos:
 nest g mo <nombre modulo>
 ```
 
+Generar guard:
+
+```
+nest g gu <direccion donde queremos guardar>/<nombre archivo> --flat
+```
+
 ## Documentacion de PIPES:
 
 https://docs.nestjs.com/pipes#built-in-pipes
@@ -144,6 +150,23 @@ rm -rf dist/
 http://localhost:3000/docs/
 
 #
+
+## Ver en donde esta corriendo el contenedor:
+
+1. Ejecutar este comando:
+
+```
+docker container ps
+
+```
+
+2. Ejecutar este comando
+
+```
+ docker inspect <id contenedor>
+```
+
+copiar el IPAddress
 
 ### TYPEORM Generar migracion:
 

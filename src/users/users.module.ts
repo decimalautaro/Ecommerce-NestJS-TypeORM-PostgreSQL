@@ -18,6 +18,7 @@ import { OrdersService } from './services/orders.service';
 import { OrdersController } from './controllers/orders.controller';
 import { OrdersItemController } from './controllers/order-item.controller';
 import { OrderItemService } from './services/order-item.service';
+import { ProfileController } from './controllers/profile.controller';
 
 @Module({
   imports: [
@@ -29,7 +30,9 @@ import { OrderItemService } from './services/order-item.service';
     UsersController,
     OrdersController,
     OrdersItemController,
+    ProfileController,
   ],
   providers: [CustomersService, UsersService, OrdersService, OrderItemService],
+  exports: [UsersService],
 })
 export class UsersModule {}

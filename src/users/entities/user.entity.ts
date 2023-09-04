@@ -7,6 +7,7 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
+import { Exclude } from 'class-transformer';
 
 import { Customer } from './customer.entity';
 
@@ -18,6 +19,7 @@ export class User {
   @Column({ type: 'varchar', unique: true })
   email: string;
 
+  @Exclude()
   @Column({ type: 'varchar' })
   password: string;
 
