@@ -7,12 +7,16 @@ import {
   ParseIntPipe,
   Param,
   Body,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { OrdersService } from '../services/orders.service';
 import { CreateOrderDto, UpdateOrderDto } from '../dtos/order.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+
 @ApiTags('orders')
+@UseGuards(JwtAuthGuard)
 @Controller('orders')
 export class OrdersController {
   constructor(private orderService: OrdersService) {}

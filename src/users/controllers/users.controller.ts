@@ -11,20 +11,20 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { ApiKeyGuard } from '../../auth/guards/api-key.guard';
-import { Public } from '../../auth/decorators/public.decorator';
-
 import { UsersService } from '../services/users.service';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { Role } from 'src/auth/models/roles.models';
 
 @ApiTags('users')
-@UseGuards(ApiKeyGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get()
-  @Public()
   findAll() {
     return this.usersService.findAll();
   }
@@ -34,11 +34,13 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
+  @Roles(Role.ADMIN)
   @Post()
   create(@Body() payload: CreateUserDto) {
     return this.usersService.create(payload);
   }
 
+  @Roles(Role.ADMIN)
   @Put(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
@@ -47,6 +49,7 @@ export class UsersController {
     return this.usersService.update(id, payload);
   }
 
+  @Roles(Role.ADMIN)
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.remove(+id);

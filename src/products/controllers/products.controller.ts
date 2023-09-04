@@ -8,7 +8,6 @@ import {
   Put,
   Query,
   UseGuards,
-  // ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -26,8 +25,8 @@ import { Public } from '../../auth/decorators/public.decorator';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { Role } from '../../auth/models/roles.models';
 
-@UseGuards(JwtAuthGuard, RolesGuard) // in specific order
 @ApiTags('products')
+@UseGuards(JwtAuthGuard, RolesGuard) // in specific order
 @Controller('products')
 export class ProductsController {
   constructor(private productService: ProductsService) {}

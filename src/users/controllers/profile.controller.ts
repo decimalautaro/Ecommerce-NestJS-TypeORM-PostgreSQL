@@ -9,8 +9,8 @@ import { OrdersService } from '../services/orders.service';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { Role } from 'src/auth/models/roles.models';
 
-@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiTags('profile')
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('profile')
 export class ProfileController {
   constructor(private orderService: OrdersService) {}
