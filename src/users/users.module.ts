@@ -16,8 +16,10 @@ import { ProductsModule } from '../products/products.module';
 
 import { OrdersService } from './services/orders.service';
 import { OrdersController } from './controllers/orders.controller';
+
 import { OrdersItemController } from './controllers/order-item.controller';
 import { OrderItemService } from './services/order-item.service';
+
 import { ProfileController } from './controllers/profile.controller';
 
 @Module({
